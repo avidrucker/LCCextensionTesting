@@ -5,7 +5,7 @@
     mov r0, 'a'
     ; mov r0, ''
     mov r0, 0
-    add r0, r0, 'a' 
+    ; add r0, r0, 'a' 
     add r0, r0, '\0'
     add r0, r0, '\r'
     dout r0

@@ -12,7 +12,7 @@ main:       ld r0, notSure
             nl
             ret
 
-notSure:    .word '\' ;; this is confirmed not a bug, but it should display a warning that the char wasn't properly terminated
+notSure:    ; .word '\' ;; this is confirmed not a bug, but it should display a warning that the char wasn't properly terminated
 		    .word 0x0 ;; DONE: fix syntax highlighting on single digit hex #'s
             ; .word 0x
             .word 0xf 
@@ -24,7 +24,7 @@ notSure:    .word '\' ;; this is confirmed not a bug, but it should display a wa
 test1:      .word 0x7fff ; represents 32767
 test2:      .word 0x8000 ; represents -32768
 test3:      .word 0xfff ; represent 4095
-test9:      .word ' ; DONE: mark this as an error
+; test9:      .word ' ; DONE: mark this as an error
 
 ; valid chars
     .word 'a'
@@ -40,13 +40,13 @@ test9:      .word ' ; DONE: mark this as an error
     .word '\ '
 
 ; invalid chars
-    .word 'a
-    .word b';
-    .word 'ab';
-    .word '\' ; grab this
-    .word ''';
-    .word '  ';
-    .word '
-    .word '' ; TODO: this should be reported as an LCC bug, it should be an empty char (does such a thing exist?) or an error
-    .word ''''
-    .word 'hello how are you today?'
+    ; .word 'a
+    ; .word b';
+    ; .word 'ab';
+    ; .word '\' ; grab this
+    ; .word ''';
+    ; .word '  ';
+    ; .word '
+    ; .word '' ; TODO: this should be reported as an LCC bug, it should be an empty char (does such a thing exist?) or an error
+    ; .word ''''
+    ; .word 'hello how are you today?'

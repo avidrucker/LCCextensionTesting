@@ -5,6 +5,8 @@ main:           mov r0, 10
                 jmp r0
 				jmp r0, -5
 				jmp r0, 5
+                jmp r0, -33
+                jmp r0, 32 ; max imm6 is 31, min is -32  
                 mov r0, 3
                 dout r0
                 nl
