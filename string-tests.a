@@ -1,0 +1,88 @@
+startup:        bl main
+                halt
+
+main:           lea r0, test1
+                sout r0
+                ret
+
+;; CORRECT STRINGS MARKED CORRECT
+test4:      .string "Hello, World!"
+test5:      .string "It's a small world after all!"
+test12:     .string " "
+testC:      .string "\""
+test13:     .string "\\"
+test14:     .string "It's\"Mr.\" to you, sir."
+test8:      .string ""
+test16:     .string ";"
+test4:      .string "Hello, World!" ; "I am a comment string"
+test5:      .string "It's a small world after all!" ;
+test8:      .string ""
+test16:     .string ";" ;
+test12:     .string " " ;
+testC:      .string "\"" ;
+test13:     .string "\\" ;
+test14:     .string "It's\"Mr.\" to you, sir." ;
+
+;; INCORRECT STRINGS MARKED INCORRECT
+testB:      .string "\"
+test6:      .string "This is a test of the emergency broadcast system.\"
+test10:     .string "abc
+test11:     .string abc"
+test6:      .string "This is a test of the emergency broadcast system.\" ;
+test10:     .string "abc ;
+test11:     .string abc" ;
+testB:      .string "\" ;
+
+;; INCORRECT STRINGS NOT YET MARKED INCORRECT
+test15:     .string """"" ; TODO: mark this as an error
+; TODO: mark this as an error
+testA:      .string "
+test9:      .string """ ; DONE: mark this as an error
+test15:     .string """"" ; DONE: mark as an error
+testA:      .string " ; DONE: mark this as an error
+test9:      .string """
+
+;; OTHER ISSUES
+test7:      .string '"' ; DONE: fix this so it is not detected as a string error but only as a char error
+test7:      .string '" ; DONE: same as above
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; simple correct valid strings
+test4:      .string "Hello, World!"
+test5:      .string "It's a small world after all!"
+test12:     .string "   "
+testC:      .string "\""
+test14:     .string "It's\"Mr.\" to you, sir."
+test16:     .string ";"
+test4:      .string "Hello, World!" ; "I am a comment string"
+test5:      .string "It's a small world after all!" ;
+
+; also correct, w/ escaped chars
+test13:     .string "\\"
+
+; also correctly, simply empty quotes
+test8:      .string ""
+
+; incorrectly escaped chars or too many quotes ; groups 2 & 3
+testB:      .string "\"
+test6:      .string "This is a test of the emergency broadcast system.\"
+testC:      .string "\"""
+test15:     .string """
+testD:      .string """"
+test16:     .string "\\\"
+
+; not ending/closing the quotes ; group 4
+test10:     .string "abc
+testF:      .string "'  ; group 5
+
+; not opening/starting the quotes ; group 5
+test11:     .string abc"
+
+; single double quote
+; TODO: mark this as an error
+testA:      .string "  
+
+test7:      .string '"' ; DONE: mark this as an error
+testE:      .string '" ; note: this is unusual because it will trigger 2 errors; one that looks for bad chars, and one that looks for bad strings
+; not starting/opening the quotes

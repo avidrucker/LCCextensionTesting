@@ -1,0 +1,47 @@
+        ; TODO: fix syntax highlighting so it correctly highlights
+        ; hexadecimal numbers from -16 to 15
+        ; DONE: fix mov syntax highlighting so it shows valid decimal #
+        ; range from -256 to 255 (currently 256 is highlighted but it shouldn't be)
+        mov r0, 0x00ff ; 255 in decimal
+        ; mov r0, 0xff00 ; -256 in decimal
+        ; mov r0 0xffff ; -1 in decimal
+        ; mov r0, -256 ; 0xff00 in hex
+        ; mov r0, 255 ; 0x00ff in hex
+        ; mov r0, 256 ; DONE: put a warning on numbers that don't match syntax highlighting
+                    ; note: these 'out-of-bounds' numbers are still technically valid
+                    ; even though they overflow
+        ; mov r0, 0xfff0 ; -16 in decimal
+        dout r0
+        nl
+        mov r0, 0
+        ; -16 in hex would be 0xfff0
+        ; QUESTION: How can I represent -16 in hex?
+        ; QUESTION: Can I represent -16 in hex as an IMM5?
+        ; shouldn't this be valid to represent -16? add r0, r0, 0x10
+        add r0, r0, 0x0f ; DONE: mark valid hex as NOT an error
+        add r0, r0, 0xf
+        add r0, r0, 0x00f
+        add r0, r0, 0x000f
+        ; add r0, r0, 0x
+        ; mov r0, 0x ; DONE: mark this 3rd arg as an error
+        dout r0
+        nl
+        ld r0, hex1
+        dout r0
+        nl
+        ld r0, hex2
+        dout r0
+        nl
+        ld r0, hex3
+        dout r0
+        nl
+        halt
+
+hex1:    .word 0x8000
+hex2:    .word 0xffff
+hex3:    .word 0x7fff
+; hex4:    .word 0x 
+; hex5:    .string 0x
+hex6:    .word 0xf
+hex7:    .word 0x0f
+hex8:    .word 0x00f

@@ -1,0 +1,52 @@
+startup:    bl main
+            halt
+
+main:       ld r0, notSure
+            aout r0
+            nl
+            ld r0, notSure + 1 ; TODO: fix syntax highlighting on optional spaces before/after offsets
+            ld r0, test3
+            hout r0
+            nl
+            dout r0
+            nl
+            ret
+
+notSure:    .word '\' ;; this is confirmed not a bug, but it should display a warning that the char wasn't properly terminated
+		    .word 0x0 ;; DONE: fix syntax highlighting on single digit hex #'s
+            ; .word 0x
+            .word 0xf 
+            .word 0x0f ;; DONE: fix syntax highlighting on double digit hex #'s
+            .word 0x0ff ;; DONE: fix syntax highlighting on triple digit hex #'s
+            .word 0x0fff
+            ; note: This next line is not an LCC error, but it should be :P
+            ; .word 0x0ffff ;; DONE: put warning on 16 bit overflow
+test1:      .word 0x7fff ; represents 32767
+test2:      .word 0x8000 ; represents -32768
+test3:      .word 0xfff ; represent 4095
+test9:      .word ' ; DONE: mark this as an error
+
+; valid chars
+    .word 'a'
+    .word '\\'
+    .word '.'
+    .word '\''
+    .word '\n'
+    .word '\t'
+    .word '\r'
+    .word '"' ; DONE: mark this as valid 
+    .word ';'
+    .word ' '
+    .word '\ '
+
+; invalid chars
+    .word 'a
+    .word b';
+    .word 'ab';
+    .word '\' ; grab this
+    .word ''';
+    .word '  ';
+    .word '
+    .word '' ; TODO: this should be reported as an LCC bug, it should be an empty char (does such a thing exist?) or an error
+    .word ''''
+    .word 'hello how are you today?'

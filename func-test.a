@@ -1,0 +1,30 @@
+startup:        bl main
+                halt
+
+main:           push lr 
+                push fp
+                mov fp, sp ; comment 
+
+                ;; cea r0, r0
+                ;; add r0, fp, r0;
+                ;; cea r0, -1
+                ;; add r0, fp, -1
+                ; DONE: correctly syntax highlight single digit hex args to cea
+                cea r0, 0xf ; DONE: mark valid hex range as acceptable input to cea, -16 to 15, 0x00 to 0xf (15 and also -1), 0xffff (-1)  
+                ; DONE: correctly syntax highlight hex args to mov
+                mov r0, 0x0 ; DONE: mark single digit hex as acceptable input to mov, 0x0 to 0xf
+                mov r0, 0x00ff; DONE: syntax highlight hex args up to 4 digits
+                mov r0, 0xff00 ; DONE: syntax highlight valid hex up to 4 digits
+                ; mov r0, -257; DONE: mark invalid decimal input as an error
+                ; mov r0, 256 ; DONE: only syntax highlight up to 255 as a valid decimal arg to mov
+                ; DONE: correctly syntax highlight hex args to add/sub
+                add r0, r0, 0xf ; DONE: mark single hex input to add as acceptable (valid range: 0x0 to 0xf)
+                dout r0 ; comment
+                nl 
+
+                mov sp, fp
+                pop fp ; comment
+                pop lr
+                ret
+
+
