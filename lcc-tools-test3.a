@@ -1,9 +1,11 @@
-                ; DONE: fix error grab for char/string literal args to mov (see next line)
-				; TODO: assign a warning to the next line's ''
-                mov r0, '' ; TODO: valid LCC assembly, but the behavior is strange in that it puts a single quote "'" into the register...
-				aout
+                ; TODO: report unprintable (?) char "-"
+                mov r0, '-' ; This appears to be valid LCC assembly...
+                aout r0 ; ... but for some reason it won't print out the hyphen
                 nl
-                ;; mov r0, "" ; " DONE: fix error grab for char/string literal args to mov
+                
+                mov r0, '' ; TODO: valid LCC assembly, assign info, `maybe you meant ???` (no space character option?)
+                aout
+                nl
                 mov r0, '\' ; TODO: valid LCC assembly, assign info, `maybe you meant '\\'?`
 				aout
                 nl
@@ -11,35 +13,24 @@
                 aout
                 nl
 
-                ; DONE: fix error grab for 2nd register to not include commas (code 12)
-                ;; mov r0, r0, ; DONE: fix error capture to highlight 2nd operand
-                ; mov r0 5,
                 mov r0, ' ; note: this does not throw an LCC error, but it should
-                ; TODO: mark this as an error
-                ; TODO: report the above to Charlie
                 mov r0, 'a ; note: this does not throw an LCC error, but it should
-                ; TODO: report the above to Charlie
                 aout r0
                 nl
 
-                ld r0, invalChar
+                ld r0, example2
                 aout   
                 nl  
 
-                lea r0, valStr
+                lea r0, example3
                 sout r0
                 nl  
                 halt  
 
-invalChar2:     .word 'a ; Note: this line does not cause any LCC errors
-; TODO: report the above to Charlie
-invalChar:      .word ''' ; TODO: valid LCC assembly, assign info
-valStr:        .string """ ; TODO: valid LCC assembly, assign info
-; invalStr2:     .string "\" ; TODO: keep this as an error as it throws 'Missing terminating quote' error in LCC
-validStr       ; DONE: fix syntax highlighting so that the r does not get highlighted as a debug instruction
-orange:         .string "\"orange" ; valid code 6
-; badString1:    .string abc" ; this should only show one error code (code 5)
-; label1:        .string "abc"
+example1:     .word 'a ; Note: this line does not cause any LCC errors, but this char is not properly terminated
+example2:      .word ''' ; TODO: valid LCC assembly, but this seems incorrectly terminated
+example3:        .string """ ; TODO: valid LCC assembly, but this seems incorrectly terminated
+; invalStr2:     .string "\" ; keep this as an error as it throws 'Missing terminating quote' error in LCC
+exampler       
+orange:         .string "\"orange" ; valid string
 anotherLabel:
-                mov r0, 5
-;               mov r0, 5
