@@ -1,13 +1,12 @@
-startup:    ld r0, x
+startup:    ld r0, y
+            dout r0
+            nl
+            ld r0, z
             dout r0
             nl
             halt
 
-juice1:     .word 3
-juice2:     .word 4
-juice3      .word 5
-juice4      .word 8
-x:          .word *+2 ; Is this behavior documented? Loading & printing x 
-                      ; presumably loads juice4 (which is 8) and then 
-                      ; adds 2 to get 10.
-                      ; TODO: ask Charlie
+x:          .word 3
+            .zero 1
+y:          .word *   ; Is this behavior documented?
+z:          .word *+2 ; TODO: ask Charlie
