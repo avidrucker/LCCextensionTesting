@@ -1,18 +1,9 @@
-; DONE: log error message for lines that exceed 300 characters
-; TODO: implement warning 'imm5 out of range' for valid char args to sub/add `    add r0, r0, 'a'`
-; DONE: add syntax highlighting to add and sub w/ optional 3rd arg that is a valid char  `    add r0, r0, 'a'`
-;        add r0, r0, 'a'
-
-; TODO: fix comment syntax highlighting so it won't begin until after quote encapsulated string is finished by implementing char syntax highlighting that extends beyond valid char length: `   .word 'a;'  ;`
-        ; .word 'ab'  ;
-        ; .word 'a;'
-; DONE: for `   dout r2, r0 ;` ignore trailing commas for error detection on registers (i.e. this is not an error, so don't mark it as such)
         mov r0, 'a'
         aout r0,
         nl
-; DONE: for `   dout, r2 ;` mark 'dout,' as an error: 'invalid operation'
-;        dout, r2
-; TODO: fix error code 3 to rule out directives because directives always begin with a period character by splitting error code 3 into 3 rules (directives
-; that start w/ periods, labels that start with [a-zA-Z_$@] and the valid mnemonics/instructions), in the specific case of `dout, r2` we can say that `dout,` is an invalid mnemonic because it doesn't start w/ a period, it doesn't follow the valid label rules of ending with a colon, and it doesn't
-; match precisely any of the valid mnemonics
+        ld r0, x 
+        aout r0
+        nl        
         halt
+
+x:        .word 'bc' ; TODO: This should report an error as an invalid char, but it does not
