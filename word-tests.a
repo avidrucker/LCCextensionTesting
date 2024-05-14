@@ -2,9 +2,11 @@ startup:    bl main
             halt
 
 main:       ld r0, notSure
-            aout r0
+            hout r0
             nl
             ld r0, notSure + 1 ; TODO: fix syntax highlighting on optional spaces before/after offsets
+            hout r0
+            nl
             ld r0, test3
             hout r0
             nl
@@ -19,8 +21,8 @@ notSure:    ; .word '\' ;; this is confirmed not a bug, but it should display a 
             .word 0x0f ;; DONE: fix syntax highlighting on double digit hex #'s
             .word 0x0ff ;; DONE: fix syntax highlighting on triple digit hex #'s
             .word 0x0fff
-            ; note: This next line is not an LCC error, but it should be :P
-            ; .word 0x0ffff ;; DONE: put warning on 16 bit overflow
+            ; note: This next line is not an LCC error, but maybe it should be?
+            .word 0x0ffff ; TODO: change error on 16 bit overflow to warning
 test1:      .word 0x7fff ; represents 32767
 test2:      .word 0x8000 ; represents -32768
 test3:      .word 0xfff ; represent 4095
