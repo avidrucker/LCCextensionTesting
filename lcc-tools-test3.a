@@ -29,6 +29,7 @@
                 nl  
                 halt  
 
+example0:     .word ' ; Note: this line does not cause any LCC errors, but this char is not properly terminated
 example1:     .word 'a ; Note: this line does not cause any LCC errors, but this char is not properly terminated
 example2:      .word ''' ; TODO: valid LCC assembly, but this seems incorrectly terminated
 example3:        .string """ ; TODO: valid LCC assembly, but this seems incorrectly terminated
