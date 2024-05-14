@@ -1,6 +1,8 @@
                 ; TODO: report unprintable (?) char "-"
                 mov r0, '-' ; This appears to be valid LCC assembly...
                 aout r0 ; ... but for some reason it won't print out the hyphen
+                dout r0 ; by dout'ing r0, this appears to indicate that the mov 
+                ; instruction did not actually assign the hyphen char value to r0
                 nl
                 
                 mov r0, '' ; TODO: valid LCC assembly, assign info, `maybe you meant ???` (no space character option?)
