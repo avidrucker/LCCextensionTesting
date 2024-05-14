@@ -34,8 +34,8 @@ test11:     .string abc" ;
 testB:      .string "\" ;
 
 ;; INCORRECT STRINGS NOT YET MARKED INCORRECT
-test15:     .string """"" ; TODO: mark this as an error
-; TODO: mark this as an error
+test15:     .string """"" ; DONE: mark this as an error
+; DONE: mark this as an error
 testA:      .string "
 test9:      .string """ ; DONE: mark this as an error
 test15:     .string """"" ; DONE: mark as an error
@@ -80,7 +80,7 @@ testF:      .string "'  ; group 5
 test11:     .string abc"
 
 ; single double quote
-; TODO: mark this as an error
+; DONE: mark this as an error
 testA:      .string "  
 
 test7:      .string '"' ; DONE: mark this as an error
