@@ -29,3 +29,7 @@ y:      .word * ; TODO: mark this as valid
 z:      .word *+32746 ; outputs 32767 ; TODO: mark this as valid
 ; test:   .word + ; this causes a seg fault!!!
 test2:  .word +10 ; outputs 10 when dout'd, TODO: mark this as valid
+; test3:  .word --10 ; this correctly detects as a bad number
+; test4:   .word -+10
+test5:   .word +0 ; TODO: mark this as valid
+test6:   .word -0 ; this is considered valid
