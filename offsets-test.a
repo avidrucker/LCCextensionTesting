@@ -1,0 +1,36 @@
+startup: bl main-2
+         halt
+
+        lea r0, a+1
+        sout r0
+main:   nl
+        cmp r0, r0
+        bre @L1-2 ; TODO: syntax highlight offsets to branch instructions
+        mov r0, 5
+        dout r0
+@L1:    ld r0, x
+        ld r1, x+1
+        ld r2, x+2
+        ld r3, y-3
+        st r3, z-1
+        ret
+        bre @L1-2
+        brb @L1+2
+        brc @L1-2
+        brn @L1 + 2
+        brz @L1 - 2
+        brp @L1+2
+        br @L1-2
+        brgt @L1 + 2
+        brlt @L1 - 2
+        brnz @L1+2
+        brne @L1-2
+        bral @L1+2
+        jmp r0, 5
+        
+
+a:      .string "Hello"
+x:      .word 5
+        .word 11
+y:      .word 17
+z:      .word x+2
