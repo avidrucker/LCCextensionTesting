@@ -1,0 +1,31 @@
+        mov r0, 3
+        cmp r0, 0
+        brp *+3
+        brp * + 3 ; TODO: syntax highlight this as valid
+        brp * ; syntax highlight this as valid
+        ; brp *+ ; TODO: mark this as an error: "Missing number"
+        dout r0
+        ; br *+2
+        mov r0, 11
+        jmp r0+2 ; TODO: syntax highlight this as valid? TODO: confirm first
+        jmp r0 + 3 ; TODO: syntax highlight this as valid? TODO: confirm first
+        mov r0, 5
+        ; ld r0, *+1 ; TODO: mark this as an error "Bad label"
+        dout r0
+        nl
+        ld r0, y
+        dout r0
+        nl
+        ld r0, z
+        dout r0
+        nl
+        ld r0, test2
+        dout r0
+        nl
+        halt
+
+x:      .word 10
+y:      .word * ; TODO: mark this as valid
+z:      .word *+32746 ; outputs 32767
+; test:   .word + ; this causes a seg fault!!!
+test2:  .word +10 ; outputs 10 when dout'd, TODO: mark this as valid
