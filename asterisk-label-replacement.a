@@ -26,6 +26,6 @@
 
 x:      .word 10
 y:      .word * ; TODO: mark this as valid
-z:      .word *+32746 ; outputs 32767
+z:      .word *+32746 ; outputs 32767 ; TODO: mark this as valid
 ; test:   .word + ; this causes a seg fault!!!
 test2:  .word +10 ; outputs 10 when dout'd, TODO: mark this as valid
