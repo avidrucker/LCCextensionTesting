@@ -6,4 +6,4 @@
         nl        
         halt
 
-x:        .word 'bc' ; TODO: This should report an error as an invalid char, but it does not
+x:        .word 'bc' ; TODO: LCC should report this as an error (invalid char), but it does not
