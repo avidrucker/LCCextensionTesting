@@ -1,0 +1,11 @@
+        mov r0, 5
+        dout r0
+        nl
+        halt
+
+x:      .word 5
+; the next line causes a seg fault
+y:      .word +
+; but... the next line does not, it instead correctly reports a "bad number"
+z:      .word - ; comment
+; the only different appears to be the presence of a comment on the line
