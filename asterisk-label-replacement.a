@@ -1,14 +1,14 @@
         mov r0, 3
         cmp r0, 0
         brp *+3
-        brp * + 3 ; TODO: syntax highlight this as valid
+        brp * + 3 ; DONE: syntax highlight this as valid
         brp * ; syntax highlight this as valid
         ; brp *+ ; TODO: mark this as an error: "Missing number"
         dout r0
         ; br *+2
         mov r0, 11
-        jmp r0+2 ; TODO: syntax highlight this as valid? TODO: confirm first
-        jmp r0 + 3 ; TODO: syntax highlight this as valid? TODO: confirm first
+        ; jmp r0+2 ; DONE: confirm invalid first
+        ; jmp r0 + 3 ; DONE: confirm invalid first
         mov r0, 5
         ; ld r0, *+1 ; TODO: mark this as an error "Bad label"
         dout r0
@@ -22,15 +22,36 @@
         ld r0, test2
         dout r0
         nl
+        ld r0, test9
+        dout r0
+        nl
+        ld r0, test10
+        dout r0
+        nl
+        ld r0, test11
+        dout r0
+        nl
+        ld r0, test12
+        dout r0
+        nl
+        ld r0, test13
+        dout r0
         halt
 
 x:      .word 10
-y:      .word * ; TODO: mark this as valid
-z:      .word *+65535 ; TODO: mark this as valid ; note: adding an offset of 65536 results in a "bad number" error
-; test:   .word + ; this causes a seg fault!!!
-test2:  .word +10 ; outputs 10 when dout'd, TODO: mark this as valid
+y:      .word *
+; DONE: syntax highlight the next line as valid
+z:      .word * + 65535 ; DONE: mark this as valid ; note: adding an offset of 65536 results in a "bad number" error
+test2:  .word *+5
+test9:  .word *+0x5 ; DONE: highlight this as a valid hex offset to an asterisk
+test10: .word +5
+test11: .word +0x5 ; TODO: report potential LCC bug, this should print out 5 but prints out 0
+test12: .word *-0x5 ; DONE: highlight this as a valid hex offset to an asterisk
+test13: .word -0x5 ; TODO: report potential LCC bug, this probably shouldn't print out 0
+                   ; instead, it probably should either print out -5 or report an error
 ; test3:  .word --10 ; this correctly detects as a bad number
 ; test4:   .word -+10 ; same as above
-test5:   .word +0 ; TODO: mark this as valid
-test6:   .word -0 ; this is considered valid
+test5:   .word +0 ; DONE: mark this as valid
+test6:   .word -0 ; this is considered valid ; TODO: fix highlighting to mark - as an operator
 ; test7:   .word ; missing operand
+test8:   .word *-65535
