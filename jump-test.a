@@ -23,13 +23,13 @@ main:           mov r0, 10
                 ; jmp r0+1 ; interestingly, this generates an infinite loop that isn't immediately detected by LCC
                 mov r0, 24
                 ; test
-                jmp r0 + 2 ; QUESTION: Is this and the next 3 lines valid LCC Assembly syntax, or is it simply ignored extra text?
-                jmp r0+100
-                jmp r0 - 1 ;
-                jmp r0-100;
+                ; jmp r0 + 2 ; QUESTION: Is this and the next 3 lines valid LCC Assembly syntax, or is it simply ignored extra text?
+                ; jmp r0+100
+                ; jmp r0 - 1 ;
+                ; jmp r0-100;
                 ; jmp r0, -32 ; this is valid syntax and is highlighted as correct code
                 ; jmp r0-32 ; this is invalid syntax and is still highlighted as correct code
-                ; TODO: fix the above line so that it is *not* highlighted as correct code
+                ; DONE: fix the above line so that it is *not* highlighted as correct code
                 ; test
                 ; jmp r0, 32 ; note: this appears to be valid syntax, but the offset 6 is out of range
                 jmp r0, 1 ; so, this is valid code, but jmp r0 + 1 appears to be invalid
