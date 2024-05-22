@@ -1,7 +1,4 @@
-        ; mov r0, + ; correctly detected err, "bad number"
-        mov r0, 5
-        ; add r0, r0, + correctly detected err, "bad number"
-        add r0, r0, r0
+        ld r0, y1 + 0x1 ; TODO: highlight hex offsets to label args of ld
         dout r0
         nl
         ld r0, y2
@@ -17,11 +14,20 @@
         ldr r0, r0, 0
         dout r0
         nl
+        mov r0, -10
+        st r0, y1 + 0x1 ; TODO: highlight hex offsets to label args of st
+        ld r0, y2
+        dout r0
+        nl
         halt
 
-y1:     .word +0 ; TODO: mark this as not an error w/ extension
-y2:     .word -0
-; y3:     .word 0xgg ; TODO: catch this error w/ extension "bad number"
-y4:     .word *+5 ; TODO: mark this as not an error w/ extension
-y5:     .word *+0x1 ; TODO: mark this as not an error w/ extension "hex offset to pc address"
-y6:     .word y5-0x1 ; TODO: mark this as not an error w/ extension "hex offset to label"
+y1:     .word +0 ; DONE: mark this as not an error w/ extension
+y2:     .word -5 ; TODO: highlight negative sign as operator
+; y3:     .word 0xgg ; DONE: catch this error w/ extension "bad number" 
+y4:     .word * + 10 ; DONE: mark this as not an error w/ extension
+y5:     .word *+0x1 ; DONE: mark this as not an error w/ extension "hex offset to pc address"
+y6:     .word y5-10 ; DONE: mark this as not an error w/ extension "int offset to label"
+y7:     .word * - 5 ; DONE: highlight this as valid syntax 
+y8:     .word 0x1234
+; y9:     .word 0x%$^&
+y10:    .word y5+0x1 ; DONE: mark this as not an error w/ extension "hex offset to label" 
