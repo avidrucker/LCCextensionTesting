@@ -291,6 +291,10 @@ bad%Label5   .word 5
 		  .word ';';
 		  .word cheese
 		  .word 0x01ff
+		  .word 0xgg
+		  .word 0x
+		  .word -0x0055 ; TODO: investigate, is this valid hex?
+		  .word +0x0055 ; DONE: highlight this as valid hex
 valid:    .word -500;
 valid2:   .word 500;
 valid3:   .word -500 ;
