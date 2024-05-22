@@ -42,12 +42,12 @@ main:       push lr
             brc @L0
             brb @L0
 
-            ; all the branch mnemonic suffixes w/ offset
+            ; all the branch mnemonic suffixes w/ integer offset
             br @L0 + 5
-            bral @L0 + 5
-            brz @L0 + 5
+            bral @L0-5
+            brz @L0+5
             bre @L0 + 5
-            brnz @L0 + 5
+            brnz @L0 - 5
             brne @L0 + 5
             brn @L0 + 5
             brp @L0 + 5
@@ -56,6 +56,21 @@ main:       push lr
             brc @L0 + 5
             brb @L0 + 5
 
+            ; all the branch mnemonic suffixes w/ hex offset to a label
+            br @L0 + 0x0005
+            bral @L0 + 0x0005
+            brz @L0 + 0x0005
+            bre @L0 + 0x0005
+            brnz @L0 + 0x0005
+            brne @L0 - 0x0005
+            brn @L0 + 0x0005
+            brp @L0+0x0005
+            brlt @L0 + 0x0005
+            brgt @L0 + 0x0005
+            brc @L0 + 0x0005
+            brb @L0 + 0x0005
+
+            ; branch to pc address
             br *
             bral *
             brz *
@@ -69,6 +84,7 @@ main:       push lr
             brc *
             brb *
 
+            ; integer offset to pc address
             br *+5
             bral *+5
             brz *+5
@@ -81,6 +97,20 @@ main:       push lr
             brgt *+5
             brc *+5
             brb *+5
+
+            ; hex offset to pc address
+            br *+0x0005
+            bral *+0x0005
+            brz *+0x0005
+            bre *+0x0005
+            brnz *+0x0005
+            brne *+0x0005
+            brn *+0x0005
+            brp * + 0x0005
+            brlt *+0x0005
+            brgt *+0x0005
+            brc *+0x0005
+            brb *+0x0005
 
 @L0:        ; Appenx B first page mnemonics
             add r0, r1, r2 ; add register
