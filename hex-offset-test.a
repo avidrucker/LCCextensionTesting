@@ -1,0 +1,50 @@
+            ld r0, a 
+            dout r0
+            nl
+            ld r0, b
+            dout r0
+            nl
+            ld r0, c
+            dout r0
+            nl
+            ld r0, d
+            dout r0
+            nl
+            ld r0, e
+            dout r0
+            nl
+            ld r0, f
+            dout r0
+            nl
+            ld r0, g
+            dout r0
+            nl
+            ld r0, h
+            dout r0
+            nl
+            ld r0, i
+            dout r0
+            nl
+            ld r0, x
+            dout r0
+            nl
+            ld r0, y
+            dout r0
+            nl
+            ld r0, z
+            dout r0
+            halt
+
+x: .word 5
+y: .word +7
+z: .word -9
+
+a: .word 0x5 ; prints out 5
+b: .word +0x5 ; Q: Why does this print out as 0 and not 5?
+c: .word -0x5 ; Q: Why does this print out as 0 and not -5?
+d: .word *+0x5 ; prints out 31+5=36
+e: .word *-0x5 ; prints out 32-5=27
+f: .word -0x0 ; prints out 0
+g: .word +0x0 ; prints out 0
+h: .word a+0x01 ; address 28 + 1
+i: .word a-0x01 ; address 28 - 1 
