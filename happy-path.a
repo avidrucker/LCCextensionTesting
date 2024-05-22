@@ -389,3 +389,4 @@ f2:         .word *-5 ; a label that points to the address 5 lines of code befor
 g1:         .word ' ' ; a space char
 
 a2:         .string "A\nmulti-line\nstring" ; a multi-line string
+b2:         .word *+0x0005 ; a label that points to the address 5 lines of code after the current address
