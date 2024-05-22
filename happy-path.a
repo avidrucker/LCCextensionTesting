@@ -1,6 +1,6 @@
             .start startup
-            .org 256
-            .org 0x3000 ; TODO: syntax highlight hexadecimal args to .org as valid
+            .org 256 ; set the origin to 256
+            .orig 0x3000 ; set the origin to 0x3000
 
 ; startup code
 startup:    bl main
@@ -304,21 +304,28 @@ main:       push lr
             ; sout is used to print the string which is stored starting at a given register
             ; see above for usage of sout
 
+            br @L2 ; skip over input and debugger instructions
             ; din, hin, ain, sin are used to read values from the console
             ; din is used to read a signed base-10 integer value from the console into a register
             ; hin is used to read a hexadecimal value from the console into a register
             ; ain is used to read an ASCII character from the console into a register
             ; sin is used to read a string from the console into memory starting at a given register
+            din r0
+            hin r0
+            ain r0
+            sin r0
 
             ; debugging instructions
             ; m displays all memory in use
             ; r displays all registers
             ; s displays the stack
             ; bp sets a breakpoint which will activate the debugger
-            ; m 
+            m 
             r 
-            s 
+            s
+            bp
 
+@L2:
             mov sp, fp
             pop fp
             pop lr
