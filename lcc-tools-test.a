@@ -1,6 +1,6 @@
 startup:    bl main
 			halt
-			jmp r3 ;; TODO: fix highlighting of jump commands so that the register is only 1 color
+			jmp r3 ;; DONE: fix highlighting of jump commands so that the register is only 1 color
 
 ; comment
 
@@ -24,7 +24,7 @@ main:       push lr
 						push r9
 						cea r0, "apple" ; "apple" 
 						cea r0, '\n'
-						cea r0, 0x1 ; TODO: mark valid hex immediate5, immediate9, and offset6 values as valid wheever they are used 
+						cea r0, 0x1 ; DONE: mark valid hex immediate5, immediate9, and offset6 values as valid wheever they are used 
 						cea r0, -20 ; DONE: fix error grab so only code 41 activates
 						cea r0, potato
 						dout blah ; dout blah
@@ -50,15 +50,15 @@ label:      cheese r1 ; bad mnemonic following a label
  6bad:       ; bad label example ; DONE: fix this so the error is caught and displayed
 inva%lid    ; bad label ; DONE: fix this so the error is caught and displayed
  @L_$b      ; another bad label
-;; TODO: display a warning for the label below
+;; DONE: create minimum viable test file: label-test.a
 ; invalidLabel; LCC does not validate this label, so, maybe we should also not syntax highlight it?
 ; label1:mov;asdafagwq <-- this is a good label & mnemonic that is missing operands "Missing register"
 ;  label5:mov;asdafagwq <-- this is a good label & mnemonic that is missing operands "Missing register"
 						; ; SEE END OF FILE FOR MORE BAD CODE EXAMPLES
 
 						;; WARNINGS START
-						add r0, r0, '''' ; TODO: split rules between valid chars and invalid chars for add/sub
-						add r0, r0, ' ' ; TODO: implement WARNING imm5 out of range for valid chars
+						add r0, r0, '''' ; DONE: split rules between valid chars and invalid chars for add/sub
+						add r0, r0, ' ' ; DONE: implement WARNING imm5 out of range for valid chars
 						add r0, r0, ' ' ; 'DONE: fix error capture for single quote args to add
 						add r0, r0, 16
 						dout r0
@@ -233,10 +233,10 @@ badStr3:  .string hello
 badStr4:  .string '  '
 badStr5:  .string 5 ;'
 badStr6:  .string ' ' ;' ; DONE; fix this so it only grabs up to the last non-escaped single quote not after a semicolon
-badStr7:  .string hello ;' TODO: capture this error
+badStr7:  .string hello ;' DONE: capture this error
 badStr7b:  .string hello2 
 badStr7c:  .string 0x123 ;
-badStr7d:  .string d1325 ;' TODO: capture this error
+badStr7d:  .string d1325 ;' DONE: capture this error
 badStr8:  .string '  ';' ; DONE: fix this err grab so it only grabs up to the last non-escaped single quote not after a semicolon
 badStr9:  .string "abc ; I am a comment
 badStr10:  .string "abc
@@ -274,12 +274,12 @@ bad%Label5   .word 5
           .word 'a a' ;
 		  .word '  '
 ;; errors end
-		  .word '\' ; DONE confirmed NOT an error... TODO: detect it and display warning message
-		  .word ' ; DONE: confirmed NOT an error... TODO: detect it and display warning message
-          .word 'a ; DONE: confirmed NOT an error... TODO: detect it and display warning message
+		  .word '\' ; DONE confirmed NOT an error... DONE: detect it and display warning message
+		  .word ' ; DONE: confirmed NOT an error... DONE: detect it and display warning message
+          .word 'a ; DONE: confirmed NOT an error... DONE: detect it and display warning message
           .word 'a'
           .word ';'; DONE: DON'T GRAB AFTER NON-ENCAPSULATED space, tab, semicolon, or newline
-          .word ''' ; TODO: mark this w/ a warning, as well as two lines below
+          .word ''' ; DONE: mark this w/ a warning, as well as two lines below
 		  .word ''' 
 		  .word '''
           .word '' ; 'DONE: fix syntax highlighting on this line, as well as 2 lines down
@@ -305,9 +305,9 @@ valid6:   .word 500
 ; fixed in 1.1.7
 empty:          .word '-' ; why don't '-' nor '\-' work? ; triggers code 36 in 1.1.6
 bigger:         .string "It's bigger\n" ; triggers code 6 in 1.1.6
-; TODO: fix error capture for the following line
+; DONE: fix error capture for the following line
 biggest2:       .string "It's even bigger.\" ; triggers code 5 in 1.1.6
 ; dsfkjsdflk lkjsdf ljslkdf lkjdsflk sdlk flksjdf lkjsdflkj lkjdf ljsdlkf lkjsdlkjf lsjdf lkjsdlkjf slkjdf ljksdf lkjslkfdj slkjdf lkjsd flkjsdlkjf lkjsd flkjsdlkjf ljksdfl kjslkjdf ljsdlkf lsjkdf ljelj fljfls kjdfl kjsdlkjf ljskdf jlsdjflk sjlkdf ljsldkjf ljsfd ljsdlf ljs lkjfslkdjf lkjsdf ljsjdfl 
 
-; TODO: fix issue where hover object is created even for comment only lines
+; DONE: fix issue where hover object is created even for comment only lines
 
