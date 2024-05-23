@@ -4,7 +4,7 @@ startup:    bl main
 main:       ld r0, notSure
             hout r0
             nl
-            ld r0, notSure + 1 ; TODO: fix syntax highlighting on optional spaces before/after offsets
+            ld r0, notSure + 1
             hout r0
             nl
             ld r0, test3
@@ -22,7 +22,8 @@ notSure:    ; .word '\' ;; this is confirmed not a bug, but it should display a 
             .word 0x0ff ;; DONE: fix syntax highlighting on triple digit hex #'s
             .word 0x0fff
             ; note: This next line is not an LCC error, but maybe it should be?
-            .word 0x0ffff ; TODO: change error on 16 bit overflow to warning
+            ; .word 0x0ffff ; TODO: change error on 16 bit overflow to warning
+            ; .word 0xgg
 test1:      .word 0x7fff ; represents 32767
 test2:      .word 0x8000 ; represents -32768
 test3:      .word 0xfff ; represent 4095
@@ -52,3 +53,12 @@ test3:      .word 0xfff ; represent 4095
     ; .word '' ; TODO: this should be reported as an LCC bug, it should be an empty char (does such a thing exist?) or an error
     ; .word ''''
     ; .word 'hello how are you today?'
+
+; offsets
+    .word 5
+    .word -5
+    .word test1 + 1
+a:  .word *
+b:  .word *+1
+c:  .word test1 + 0x0001
+d:  .word *+ 0x0001
