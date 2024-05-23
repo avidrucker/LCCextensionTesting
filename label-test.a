@@ -3,5 +3,5 @@
         halt
 
 someLabel:; Q: Why is this label considered valid...?
-anotherLabel; Q: ...but this one isn't?
+anotherLabel; Q: ...but this one isn't? Causes LCC to report "Bad label" error
 ; TODO: validate above label w/ Charlie/Prof. DR, mark as error via extension as needed
