@@ -1,0 +1,7 @@
+loop: din r0 ; attempting to input a string results in an error here
+      cmp r0,-1 
+      brz end  
+      add r1,r0,r1 
+      br loop ;go back to the loop
+end:  dout r1 ; 
+      halt

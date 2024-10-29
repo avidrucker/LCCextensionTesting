@@ -1,0 +1,4 @@
+    mov r0, 70000
+    dout r0
+    nl
+    halt

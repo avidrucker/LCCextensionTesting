@@ -1,0 +1,6 @@
+    ld r0, x
+    dout r0
+    nl
+    halt
+
+x: .word 70000
